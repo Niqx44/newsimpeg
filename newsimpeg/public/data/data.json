@@ -1,0 +1,10 @@
+{
+  "sidebarItems": [
+    { "name": "Dashboard", "href": "/admin/dashboard", "icon": "LayoutDashboard" },
+    { "name": "Data Pegawai", "href": "/admin/datapegawai", "icon": "Users" },
+    { "name": "Approval Data", "href": "/admin/approvaldata", "icon": "Folder" },
+    { "name": "Database", "href": "/database", "icon": "Database" },
+    { "name": "Laporan", "href": "/laporan", "icon": "Printer" }
+  ]
+}
+  

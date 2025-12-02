@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "nip": "1985072408011004",
+    "nama": "Aidil Pratama",
+    "email": "aidil@gmail.com",
+    "no_karpeg": "123456789",
+    "tmt_cpns": "2010-02-01",
+    "tmt_pns": "2012-03-15",
+    "tempat_lahir": "Makassar",
+    "tanggal_lahir": "1985-07-24",
+    "no_ktp": "7371123456789001",
+    "agama": "Islam",
+    "alamat": "Jl. Pelita Raya",
+    "nidn": "123456789",
+    "status": "AKTIF",
+    "jenis_kepegawaian": "PNS"
+  },
+  {
+    "id": 2,
+    "nip": "1976081220041001",
+    "nama": "Fahmi, A.Md",
+    "email": "fahmi@gmail.com",
+    "no_karpeg": "987654321",
+    "tmt_cpns": "2004-10-01",
+    "tmt_pns": "2006-01-15",
+    "tempat_lahir": "Parepare",
+    "tanggal_lahir": "1976-08-12",
+    "no_ktp": "7371123456789999",
+    "agama": "Islam",
+    "alamat": "Jl. Andi Mappanyukki",
+    "nidn": "555123444",
+    "status": "AKTIF",
+    "jenis_kepegawaian": "PNS"
+  }
+]
