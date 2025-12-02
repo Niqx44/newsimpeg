@@ -32,7 +32,7 @@ export default function PegawaiTable({ data, onChangeStatus, onResetPassword }) 
 
                   <button
                     onClick={() => onChangeStatus(item.id)}
-                    className="px-3 py-1 bg-yellow-500 hover:bg-yellow-600 text-black text-xs rounded"
+                    className="px-3 py-1 bg-gray-500 hover:bg-gray-600 text-white text-xs rounded"
                   >
                     Ubah
                   </button>

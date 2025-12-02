@@ -1,4 +1,6 @@
+// components/detailpegawai/ProfileTab.jsx
 "use client";
+
 import React from "react";
 
 export default function ProfileTab({ pegawai, onEdit }) {
@@ -6,9 +8,7 @@ export default function ProfileTab({ pegawai, onEdit }) {
     <div>
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold text-white">Profile Pegawai</h3>
-        <button onClick={onEdit} className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded shadow">
-          Edit Profile
-        </button>
+        <button onClick={() => onEdit(pegawai)} className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded shadow">Edit Profile</button>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -25,7 +25,7 @@ export default function ProfileTab({ pegawai, onEdit }) {
         <Info label="Alamat" value={pegawai.alamat} />
         <Info label="NIDN / NUPTK" value={pegawai.nidn} />
         <Info label="Status" value={pegawai.status} />
-        <Info label="Jenis Kepegawaian" value={pegawai.jenis_kepegawaian ?? "-"} />
+        <Info label="Jenis Kepegawaian" value={pegawai.jenis_kepegawaian} />
       </div>
     </div>
   );

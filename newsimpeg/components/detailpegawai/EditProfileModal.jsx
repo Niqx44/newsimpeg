@@ -1,8 +1,10 @@
+// components/detailpegawai/EditProfileModal.jsx
 "use client";
-import React, { useState, useEffect } from "react";
+
+import React, { useEffect, useState } from "react";
 
 export default function EditProfileModal({ open, onClose, onSave, data }) {
-  const [form, setForm] = useState({ ...data });
+  const [form, setForm] = useState({});
 
   useEffect(() => {
     setForm({ ...data });
@@ -12,7 +14,7 @@ export default function EditProfileModal({ open, onClose, onSave, data }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((f) => ({ ...f, [name]: value }));
+    setForm((s) => ({ ...s, [name]: value }));
   };
 
   return (
@@ -28,7 +30,7 @@ export default function EditProfileModal({ open, onClose, onSave, data }) {
           <Field label="TMT CPNS" name="tmt_cpns" value={form.tmt_cpns || ""} onChange={handleChange} />
           <Field label="TMT PNS" name="tmt_pns" value={form.tmt_pns || ""} onChange={handleChange} />
           <Field label="Tempat Lahir" name="tempat_lahir" value={form.tempat_lahir || ""} onChange={handleChange} />
-          <Field label="Tanggal Lahir" name="tanggal_lahir" value={form.tanggal_lahir || ""} onChange={handleChange} type="date" />
+          <Field label="Tanggal Lahir" name="tanggal_lahir" type="date" value={form.tanggal_lahir || ""} onChange={handleChange} />
           <Field label="NO KTP" name="no_ktp" value={form.no_ktp || ""} onChange={handleChange} />
           <Field label="Agama" name="agama" value={form.agama || ""} onChange={handleChange} />
           <Field label="Alamat" name="alamat" value={form.alamat || ""} onChange={handleChange} />
