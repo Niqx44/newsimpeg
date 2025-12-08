@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
-import GenericTable from "@/components/detailpegawai/DetailPegawaiTable";
+import GenericTable from "@/components/admin/detailpegawai/DetailPegawaiTable";
 
-export default function ArsipTab({ data, openAdd, openEdit, requestDelete, viewFile, pageSize }) {
+export default function KgbTab({ data, openAdd, openEdit, requestDelete, viewFile, pageSize }) {
   const cols = [
     { label: "No", key: "no" },
-    { label: "Jenis Arsip", key: "jenis_arsip" },
+    { label: "Tanggal KGB", key: "tanggal_kgb" },
+    { label: "Masa Kerja", key: "masa_kerja" },
     { label: "File", key: "file", align: "center" },
     { label: "Action", key: "action", align: "center" },
   ];

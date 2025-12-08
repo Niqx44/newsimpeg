@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import StatCard from "@/components/StatCard";
+import StatCard from "@/components/admin/StatCard";
 import { Users } from "lucide-react";
 import { motion } from "framer-motion";
-import GolonganChart from "@/components/charts/GolonganChart";
-import CutiTerbaruTable from "@/components/tables/CutiTerbaruTable";
+import GolonganChart from "@/components/admin/charts/GolonganChart";
+import CutiTerbaruTable from "@/components/admin/tables/CutiTerbaruTable";
 
 const DashboardPage = () => {
 

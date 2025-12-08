@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import ApproveTabsHeader from "@/components/approve/ApproveTabsHeader";
-import ApproveTable from "@/components/approve/ApproveTable";
-import ConfirmActionModal from "@/components/approve/ConfirmActionModal";
+import ApproveTabsHeader from "@/components/admin/approve/ApproveTabsHeader";
+import ApproveTable from "@/components/admin/approve/ApproveTable";
+import ConfirmActionModal from "@/components/admin/approve/ConfirmActionModal";
 
 export default function ApprovePage() {
   const [tab, setTab] = useState("golongan");

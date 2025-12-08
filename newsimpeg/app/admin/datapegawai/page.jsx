@@ -1,136 +1,159 @@
 "use client";
 
-import React, { useState } from "react";
-import PegawaiTable from "@/components/PegawaiTable";
-import ResetPasswordModal from "@/components/ResetPasswordModal";
+import { useState } from "react";
+import PegawaiTable from "@/components/admin/PegawaiTable";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 
 export default function DataPegawaiPage() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
-  const itemsPerPage = 10;
-
-  const [showResetModal, setShowResetModal] = useState(false);
-  const [selectedId, setSelectedId] = useState(null);
-
-  const handleResetPassword = (id) => {
-    setSelectedId(id);
-    setShowResetModal(true);
-  };
-
-  const confirmResetPassword = () => {
-    alert(`Password pegawai ID ${selectedId} berhasil direset!`);
-    setShowResetModal(false);
-  };
-
-  const handleChangeStatus = (id) => {
-    alert(`Ubah status pegawai ID: ${id}`);
-  };
+  const [limit, setLimit] = useState(5);
 
   const dataPegawai = [
     { id: 1, nip: "1985072408011004", nama: "Aidil Pratama", status: "AKTIF" },
     { id: 2, nip: "1976081220041001", nama: "Fahmi, A.Md", status: "AKTIF" },
     { id: 3, nip: "197405252001121001", nama: "Basri Kadir, S.Pd", status: "AKTIF" },
-    { id: 4, nip: "1985072408011004", nama: "Hasbi, M.Si", status: "AKTIF" },
-    { id: 5, nip: "1985072408011004", nama: "Aminah Saibi", status: "AKTIF" },
-    { id: 6, nip: "1985072408011004", nama: "Wahid", status: "AKTIF" },
-    { id: 7, nip: "1985072408011004", nama: "Wahi", status: "AKTIF" },
-    { id: 8, nip: "1985072408011004", nama: "Wah", status: "AKTIF" },
-    { id: 9, nip: "1985072408011004", nama: "Wad", status: "AKTIF" },
-    { id: 10, nip: "1985072408011004", nama: "Wahd", status: "AKTIF" },
-    { id: 11, nip: "1985072408011004", nama: "Wad", status: "AKTIF" },
-    { id: 12, nip: "1985072408011004", nama: "Wah", status: "AKTIF" },
+    { id: 4, nip: "197405252001121001", nama: "Basri Kadir, S.Pd", status: "AKTIF" },
+    { id: 5, nip: "197405252001121001", nama: "Basri Kadir, S.Pd", status: "AKTIF" },
+    { id: 6, nip: "197405252001121001", nama: "Basri Kadir, S.Pd", status: "AKTIF" },
+    { id: 7, nip: "197405252001121001", nama: "Basri Kadir, S.Pd", status: "AKTIF" },
+    { id: 8, nip: "197405252001121001", nama: "Basri Kadir, S.Pd", status: "AKTIF" },
+    { id: 9, nip: "197405252001121001", nama: "Basri Kadir, S.Pd", status: "AKTIF" },
+    { id: 10, nip: "197405252001121001", nama: "Basri Kadir, S.Pd", status: "AKTIF" },
+    { id: 11, nip: "197405252001121001", nama: "Basri Kadir, S.Pd", status: "AKTIF" },
+    { id: 12, nip: "197405252001121001", nama: "Basri Kadir, S.Pd", status: "AKTIF" },
   ];
 
-  const filteredData = dataPegawai.filter((p) =>
-    p.nama.toLowerCase().includes(search.toLowerCase()) ||
-    p.nip.includes(search)
+  // FILTER
+  const filtered = dataPegawai.filter(
+    (p) =>
+      p.nama.toLowerCase().includes(search.toLowerCase()) ||
+      p.nip.includes(search)
   );
 
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-  const currentData = filteredData.slice(
-    (page - 1) * itemsPerPage,
-    page * itemsPerPage
-  );
+  // PAGINATION
+  const totalPages = Math.ceil(filtered.length / limit) || 1;
+  const start = (page - 1) * limit;
+  const currentData = filtered.slice(start, start + limit);
 
   return (
-    <div className="flex-1 overflow-auto relative z-10">
-      <main className="max-w-7xl mx-auto py-4 px-4 lg:px-8">
+    <div className="flex-1 overflow-auto">
+      <main className="max-w-7xl mx-auto py-6 px-6">
 
         {/* HEADER */}
-        <div className="flex items-center justify-between mb-6">
-
-          {/* Tombol Tambah */}
-          <Link
-            href="/admin/datapegawai/tambahpegawai"
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg shadow"
-          >
-            <Plus size={18} /> Tambah Pegawai
-          </Link>
-
-          {/* Search */}
-          <input
-            type="text"
-            placeholder="Search..."
-            className="px-3 py-2 rounded bg-black text-white border border-gray-700 w-60"
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-              setPage(1);
-            }}
-          />
+        <div className="mb-6">
+          <h1 className="text-xl font-semibold text-black">
+            Sistem Informasi Kepegawaian – Universitas Negeri Makassar
+          </h1>
+          <p className="text-gray-600">
+            Data Pegawai Aktif dan Berkembang
+          </p>
         </div>
 
-        {/* TABEL */}
-        <PegawaiTable
-          data={currentData}
-          onChangeStatus={handleChangeStatus}
-          onResetPassword={handleResetPassword}
-        />
+        {/* CARD */}
+        <div className="bg-[#2b2b2b] rounded-xl shadow-lg p-6">
 
-        {/* PAGINATION */}
-        {totalPages > 1 && (
-          <div className="flex justify-center mt-4 gap-2">
-            <button
-              onClick={() => setPage((p) => Math.max(1, p - 1))}
-              disabled={page === 1}
-              className="px-3 py-1 bg-gray-700 text-white rounded disabled:opacity-40"
-            >
-              Prev
-            </button>
-
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((pNum) => (
-              <button
-                key={pNum}
-                onClick={() => setPage(pNum)}
-                className={`px-3 py-1 rounded ${
-                  page === pNum
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                }`}
+          {/* CONTROLS */}
+          <div className="flex justify-between items-center mb-4">
+            
+            {/* SHOW ENTRIES */}
+            <div className="flex items-center gap-2 text-sm text-gray-300">
+              Show
+              <select
+                value={limit}
+                onChange={(e) => {
+                  setLimit(Number(e.target.value));
+                  setPage(1);
+                }}
+                className="bg-[#1f1f1f] border border-gray-600 rounded px-2 py-1 text-white"
               >
-                {pNum}
-              </button>
-            ))}
+                {[5, 10, 25].map((n) => (
+                  <option key={n} value={n}>
+                    {n}
+                  </option>
+                ))}
+              </select>
+              entries
+            </div>
 
-            <button
-              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-              disabled={page === totalPages}
-              className="px-3 py-1 bg-gray-700 text-white rounded disabled:opacity-40"
-            >
-              Next
-            </button>
+            {/* SEARCH + TAMBAH */}
+            <div className="flex items-center gap-3">
+              <input
+                placeholder="Search..."
+                className="bg-[#374151] text-white px-4 py-2 rounded-md placeholder-gray-400 w-56"
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setPage(1);
+                }}
+              />
+
+              <Link
+                href="/admin/datapegawai/tambahpegawai"
+                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-md"
+              >
+                <Plus size={18} />
+                Tambah
+              </Link>
+            </div>
           </div>
-        )}
 
-        {/* RESET PASSWORD MODAL */}
-        <ResetPasswordModal
-          open={showResetModal}
-          onClose={() => setShowResetModal(false)}
-          onConfirm={confirmResetPassword}
-        />
+          {/* TABLE */}
+          <PegawaiTable
+            data={currentData}
+            page={page}
+            limit={limit}
+            onChangeStatus={(id) =>
+              alert(`Ubah status pegawai ID ${id}`)
+            }
+            onResetPassword={(id) =>
+              alert(`Reset password pegawai ID ${id}`)
+            }
+          />
 
+          {/* FOOTER */}
+          <div className="flex justify-between items-center mt-4 text-sm text-gray-300">
+            <div>
+              Showing {filtered.length ? start + 1 : 0} to{" "}
+              {start + currentData.length} of {filtered.length} entries
+            </div>
+
+            {/* PAGINATION */}
+            <div className="flex gap-2">
+              <button
+                disabled={page === 1}
+                onClick={() => setPage(page - 1)}
+                className="px-3 py-1 rounded bg-[#1f1f1f] disabled:text-gray-500"
+              >
+                Previous
+              </button>
+
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                <button
+                  key={p}
+                  onClick={() => setPage(p)}
+                  className={`px-3 py-1 rounded ${
+                    page === p
+                      ? "bg-blue-600 text-white"
+                      : "bg-[#1f1f1f] text-gray-300 hover:bg-[#2a2a2a]"
+                  }`}
+                >
+                  {p}
+                </button>
+              ))}
+
+              <button
+                disabled={page === totalPages}
+                onClick={() => setPage(page + 1)}
+                className="px-3 py-1 rounded bg-[#1f1f1f] disabled:text-gray-500"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+
+        </div>
       </main>
     </div>
   );

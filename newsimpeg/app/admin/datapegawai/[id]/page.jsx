@@ -4,11 +4,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
-import TabsHeader from "@/components/detailpegawai/TabsHeader";
-import ProfileTab from "@/components/detailpegawai/ProfileTab";
-import DetailPegawaiTable from "@/components/detailpegawai/DetailPegawaiTable";
-import GenericModal from "@/components/detailpegawai/GenericModal";
-import EditProfileModal from "@/components/detailpegawai/EditProfileModal";
+import TabsHeader from "@/components/admin/detailpegawai/TabsHeader";
+import ProfileTab from "@/components/admin/detailpegawai/ProfileTab";
+import DetailPegawaiTable from "@/components/admin/detailpegawai/DetailPegawaiTable";
+import GenericModal from "@/components/admin/detailpegawai/GenericModal";
+import EditProfileModal from "@/components/admin/detailpegawai/EditProfileModal";
 
 const defaultPerPage = 5;
 

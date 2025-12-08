@@ -1,0 +1,34 @@
+{
+  "sidebarItems": [
+    {
+      "name": "Dashboard",
+      "href": "/user/dashboard",
+      "icon": "LayoutDashboard"
+    },
+    {
+      "name": "Profil Pegawai",
+      "href": "/user/profil",
+      "icon": "Users"
+    },
+    {
+      "name": "Data Pegawai",
+      "href": "/user/datapegawai",
+      "icon": "Database"
+    },
+    {
+      "name": "Data Organisasi",
+      "href": "/user/organisasi",
+      "icon": "Folder"
+    },
+    {
+      "name": "Peraturan-Peraturan",
+      "href": "/user/peraturan",
+      "icon": "Book"
+    },
+    {
+      "name": "Ganti Password",
+      "href": "/user/gantipassword",
+      "icon": "Monitor"
+    }
+  ]
+}

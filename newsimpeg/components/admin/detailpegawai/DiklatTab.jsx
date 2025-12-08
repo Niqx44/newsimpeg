@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import GenericTable from "@/components/detailpegawai/DetailPegawaiTable";
+import GenericTable from "@/components/admin/detailpegawai/DetailPegawaiTable";
 
 export default function DiklatTab({ data, openAdd, openEdit, requestDelete, viewFile, pageSize }) {
   const cols = [

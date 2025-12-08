@@ -24,7 +24,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    fetch("/data/data.json")
+    fetch("/data/admin-sidebar.json")
       .then((res) => res.json())
       .then((data) => setSidebarItems(data.sidebarItems));
   }, []);
