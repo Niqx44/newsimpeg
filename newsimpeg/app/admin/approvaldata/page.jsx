@@ -13,19 +13,11 @@ export default function ApprovePage() {
     golongan: [
       {
         id: 1,
-        nip: "1987001",
-        nama: "Budi",
-        golongan: "III/b",
-        tmt: "2020-01-01",
-        file: "-",
-      },
-      {
-        id: 2,
-        nip: "1987002",
-        nama: "Siti",
-        golongan: "III/c",
-        tmt: "2021-02-01",
-        file: "-",
+        nip: "12391913813187",
+        nama: "Ahmad",
+        jenis: "KGB",
+        tanggal: "2024-07-01",
+        file: "/public/data/admin.jpg",
       },
     ],
   });

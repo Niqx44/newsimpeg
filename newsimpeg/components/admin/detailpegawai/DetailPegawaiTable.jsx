@@ -45,7 +45,7 @@ export default function DetailPegawaiTable({
         <div className="flex justify-center">
           <button
             onClick={() => onViewFile?.(row)}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1.5 rounded text-xs"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-xs"
           >
             View
           </button>

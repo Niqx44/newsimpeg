@@ -11,7 +11,7 @@ const Header = () => {
   const getPageTitle = () => {
     if (pathname === "/admin/dashboard") return "Dashboard";
     if (pathname.startsWith("/admin/datapegawai")) return "Data Pegawai";
-    if (pathname.startsWith("/admin/jabatan")) return "Data Jabatan";
+    if (pathname.startsWith("/admin/approvaldata")) return "Approval Data";
     if (pathname.startsWith("/admin/database")) return "Database";
     if (pathname.startsWith("/admin/laporan")) return "Laporan";
     return "SIMPEG UNM";

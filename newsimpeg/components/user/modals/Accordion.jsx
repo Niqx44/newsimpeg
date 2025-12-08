@@ -10,7 +10,7 @@ export default function Accordion({ title, children }) {
     <div className="border rounded mb-3 overflow-hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex justify-between items-center px-4 py-3 bg-[#607D8B] text-white text-sm font-medium"
+        className="w-full flex justify-between items-center px-4 py-3 bg-gray-800 text-white text-sm font-medium"
       >
         {title}
         <ChevronDown

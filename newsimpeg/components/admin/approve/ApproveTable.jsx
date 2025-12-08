@@ -31,12 +31,28 @@ export default function ApproveTable({
     return filteredData.slice(start, start + pageSize);
   }, [filteredData, page, pageSize]);
 
-  /* ================= CELL ================= */
+  /* ================= CELL RENDER ================= */
   function renderCell(col, row, idx) {
+    // NO
     if (col.key === "no") {
       return (page - 1) * pageSize + idx + 1;
     }
 
+    // FILE
+    if (col.key === "file") {
+      return row.file ? (
+        <button
+          onClick={() => window.open(row.file, "_blank")}
+          className="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-xs"
+        >
+          VIEW
+        </button>
+      ) : (
+        "-"
+      );
+    }
+
+    // ACTION
     if (col.key === "action") {
       return (
         <div className="flex justify-center gap-2">
@@ -193,6 +209,7 @@ export default function ApproveTable({
           </button>
         </div>
       </div>
+
     </div>
   );
 }

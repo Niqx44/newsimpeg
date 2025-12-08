@@ -18,7 +18,7 @@ export default function DashboardInfoCard({
     >
       {/* CONTENT */}
       <div>
-        <h3 className="text-lg font-semibold text-sky-500 mb-2">
+        <h3 className="text-lg font-semibold text-black mb-2">
           {title}
         </h3>
 
@@ -35,7 +35,7 @@ export default function DashboardInfoCard({
       <div className="flex justify-end mt-4">
         <button
           onClick={onClick}
-          className="flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white text-xs px-4 py-2 rounded transition"
+          className="flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white text-xs px-4 py-2 rounded transition"
         >
           {buttonText}
         </button>
