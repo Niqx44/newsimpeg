@@ -6,16 +6,9 @@ import { useParams } from "next/navigation";
 
 import TabsHeader from "@/components/detailpegawai/TabsHeader";
 import ProfileTab from "@/components/detailpegawai/ProfileTab";
-import GenericTable from "@/components/detailpegawai/GenericTable";
+import DetailPegawaiTable from "@/components/detailpegawai/DetailPegawaiTable";
 import GenericModal from "@/components/detailpegawai/GenericModal";
 import EditProfileModal from "@/components/detailpegawai/EditProfileModal";
-
-/**
- * Page: Detail Pegawai
- * - load pegawai from /data/pegawai.json
- * - maintain per-riwayat arrays in state (dummy for now)
- * - use GenericTable + GenericModal for CRUD
- */
 
 const defaultPerPage = 5;
 
@@ -303,7 +296,7 @@ export default function DetailPage() {
           {activeTab === "profile" && <ProfileTab pegawai={pegawai} onEdit={() => setShowProfileModal(true)} />}
 
           {activeTab === "golongan" && (
-            <GenericTable
+            <DetailPegawaiTable
               columns={columnsDef.golongan}
               data={golongan}
               pageSize={defaultPerPage}
@@ -315,7 +308,7 @@ export default function DetailPage() {
           )}
 
           {activeTab === "jabatan" && (
-            <GenericTable
+            <DetailPegawaiTable
               columns={columnsDef.jabatan}
               data={jabatan}
               pageSize={defaultPerPage}
@@ -327,7 +320,7 @@ export default function DetailPage() {
           )}
 
           {activeTab === "pendidikan" && (
-            <GenericTable
+            <DetailPegawaiTable
               columns={columnsDef.pendidikan}
               data={pendidikan}
               pageSize={defaultPerPage}
@@ -339,7 +332,7 @@ export default function DetailPage() {
           )}
 
           {activeTab === "diklat" && (
-            <GenericTable
+            <DetailPegawaiTable
               columns={columnsDef.diklat}
               data={diklat}
               pageSize={defaultPerPage}
@@ -351,7 +344,7 @@ export default function DetailPage() {
           )}
 
           {activeTab === "riset" && (
-            <GenericTable
+            <DetailPegawaiTable
               columns={columnsDef.riset}
               data={riset}
               pageSize={defaultPerPage}
@@ -363,7 +356,7 @@ export default function DetailPage() {
           )}
 
           {activeTab === "penghargaan" && (
-            <GenericTable
+            <DetailPegawaiTable
               columns={columnsDef.penghargaan}
               data={penghargaan}
               pageSize={defaultPerPage}
@@ -375,7 +368,7 @@ export default function DetailPage() {
           )}
 
           {activeTab === "kgb" && (
-            <GenericTable
+            <DetailPegawaiTable
               columns={columnsDef.kgb}
               data={kgb}
               pageSize={defaultPerPage}
@@ -387,7 +380,7 @@ export default function DetailPage() {
           )}
 
           {activeTab === "arsip" && (
-            <GenericTable
+            <DetailPegawaiTable
               columns={columnsDef.arsip}
               data={arsip}
               pageSize={defaultPerPage}

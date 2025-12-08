@@ -6,9 +6,9 @@ import Link from "next/link";
 
 export default function PegawaiTable({ data, onChangeStatus, onResetPassword }) {
   return (
-    <div className="bg-black/60 p-4 rounded-xl shadow-md mt-4">
+    <div className="bg-[#2b2b2b] p-4 rounded-xl shadow-md mt-4">
       <table className="w-full text-white">
-        <thead className="border-b border-gray-700">
+        <thead className="border-b border-gray-400">
           <tr>
             <th className="py-3 text-left w-12">No.</th>
             <th className="py-3 text-left">NIP</th>
@@ -20,7 +20,7 @@ export default function PegawaiTable({ data, onChangeStatus, onResetPassword }) 
 
         <tbody>
           {data.map((item, index) => (
-            <tr key={item.id} className="border-b border-gray-800">
+            <tr key={item.id} className="border-b border-gray-400">
               <td className="py-3">{index + 1}</td>
               <td>{item.nip}</td>
               <td>{item.nama}</td>
@@ -32,7 +32,7 @@ export default function PegawaiTable({ data, onChangeStatus, onResetPassword }) 
 
                   <button
                     onClick={() => onChangeStatus(item.id)}
-                    className="px-3 py-1 bg-gray-500 hover:bg-gray-600 text-white text-xs rounded"
+                    className="px-3 py-1 bg-gray-600 hover:bg-gray-700 text-white text-xs rounded"
                   >
                     Ubah
                   </button>

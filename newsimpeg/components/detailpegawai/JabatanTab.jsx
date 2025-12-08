@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import GenericTable from "@/components/detailpegawai/GenericTable";
+import GenericTable from "@/components/detailpegawai/DetailPegawaiTable";
 
 export default function JabatanTab({ data, openAdd, openEdit, requestDelete, viewFile, pageSize }) {
   const cols = [
