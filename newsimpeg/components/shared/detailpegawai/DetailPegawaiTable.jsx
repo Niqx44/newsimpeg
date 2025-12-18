@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
+import { Pencil, Trash2 } from "lucide-react";
 import ConfirmDeleteModal from "./DetailHapusModal";
 
 export default function DetailPegawaiTable({
-  columns,
+  columns = [],
   data = [],
   pageSize = 5,
   openAdd,
@@ -17,7 +18,7 @@ export default function DetailPegawaiTable({
   const [search, setSearch] = useState("");
   const [deleteData, setDeleteData] = useState(null);
 
-  // 🔍 Global search
+  /* ================= FILTER ================= */
   const filteredData = useMemo(() => {
     if (!search) return data;
     return data.filter((row) =>
@@ -36,22 +37,24 @@ export default function DetailPegawaiTable({
     return filteredData.slice(start, start + pageSizeState);
   }, [filteredData, page, pageSizeState]);
 
+  if (page > totalPages) setPage(1);
+
+  /* ================= CELL ================= */
   function renderCell(col, row, idx) {
-    if (col.key === "no")
+    if (col.key === "no") {
       return (page - 1) * pageSizeState + idx + 1;
+    }
 
     if (col.key === "file") {
       return row.file ? (
-        <div className="flex justify-center">
-          <button
-            onClick={() => onViewFile?.(row)}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-xs"
-          >
-            View
-          </button>
-        </div>
+        <button
+          onClick={() => onViewFile?.(row)}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs"
+        >
+          View
+        </button>
       ) : (
-        <div className="text-center text-xs text-gray-400">-</div>
+        "-"
       );
     }
 
@@ -60,38 +63,29 @@ export default function DetailPegawaiTable({
         <div className="flex justify-center gap-2">
           <button
             onClick={() => onEdit?.(row)}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-xs"
+            className="bg-yellow-500 hover:bg-yellow-600 p-2 rounded"
           >
-            Edit
+            <Pencil size={14} />
           </button>
+
           <button
             onClick={() => setDeleteData(row)}
-            className="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs"
+            className="bg-red-600 hover:bg-red-700 p-2 rounded"
           >
-            Hapus
+            <Trash2 size={14} />
           </button>
         </div>
       );
     }
 
-    const value = row[col.key];
-    if (value === null || value === undefined || value === "") return "-";
-    return value;
+    return row[col.key] ?? "-";
   }
-
-  function getAlignClass(col) {
-    if (col.align === "center") return "text-center";
-    if (col.align === "right") return "text-right";
-    return "text-left";
-  }
-
-  if (page > totalPages) setPage(1);
 
   return (
-    <div>
-      {/* 🔝 HEADER */}
+    <div className="w-full">
+
+      {/* ===== HEADER ===== */}
       <div className="flex items-center justify-between mb-4">
-        {/* LEFT */}
         <div className="flex items-center gap-2 text-sm text-gray-300">
           <span>Show</span>
           <select
@@ -100,7 +94,7 @@ export default function DetailPegawaiTable({
               setPageSizeState(Number(e.target.value));
               setPage(1);
             }}
-            className="bg-gray-700 text-white rounded px-2 py-1"
+            className="bg-[#374151] px-2 py-1 rounded"
           >
             {[5, 10, 25, 50].map((n) => (
               <option key={n} value={n}>{n}</option>
@@ -109,12 +103,11 @@ export default function DetailPegawaiTable({
           <span>entries</span>
         </div>
 
-        {/* RIGHT */}
-        <div className="flex items-center gap-2">
+        <div className="flex gap-2">
           {openAdd && (
             <button
               onClick={openAdd}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded"
+              className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm"
             >
               + Tambah
             </button>
@@ -128,35 +121,32 @@ export default function DetailPegawaiTable({
               setSearch(e.target.value);
               setPage(1);
             }}
-            className="bg-gray-700 text-white px-3 py-2 rounded w-60"
+            className="bg-[#374151] px-3 py-2 rounded w-64"
           />
         </div>
       </div>
 
-      {/* 📊 TABLE */}
-      <div className="bg-[#3b3b3b] rounded-lg overflow-hidden">
-        <table className="w-full text-sm text-gray-200 table-fixed">
-          <thead className="bg-[#2d2d2d]">
+      {/* ===== TABLE ===== */}
+      <div className="overflow-x-auto rounded-lg">
+        <table className="w-full text-sm text-gray-200">
+          <thead className="bg-[#262626]">
             <tr>
               {columns.map((c) => (
-                <th
-                  key={c.key}
-                  className={`py-3 px-4 ${getAlignClass(c)} ${c.width || ""}`}
-                >
+                <th key={c.key} className="py-3 px-4 text-center">
                   {c.label}
                 </th>
               ))}
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-gray-700">
+          <tbody>
             {pageData.map((row, idx) => (
-              <tr key={row.id ?? idx} className="hover:bg-[#474747]">
+              <tr
+                key={row.id ?? idx}
+                className="border-b border-gray-700 hover:bg-[#3a3a3a]"
+              >
                 {columns.map((col) => (
-                  <td
-                    key={col.key}
-                    className={`py-3 px-4 ${getAlignClass(col)}`}
-                  >
+                  <td key={col.key} className="py-3 px-4 text-center">
                     {renderCell(col, row, idx)}
                   </td>
                 ))}
@@ -169,7 +159,7 @@ export default function DetailPegawaiTable({
                   colSpan={columns.length}
                   className="py-6 text-center text-gray-400"
                 >
-                  Belum ada data.
+                  Belum ada data
                 </td>
               </tr>
             )}
@@ -177,8 +167,8 @@ export default function DetailPegawaiTable({
         </table>
       </div>
 
-      {/* 📘 FOOTER */}
-      <div className="flex justify-between items-center mt-3 text-sm text-gray-300">
+      {/* ===== FOOTER ===== */}
+      <div className="flex justify-between items-center mt-4 text-sm text-gray-300">
         <div>
           Showing {total === 0 ? 0 : (page - 1) * pageSizeState + 1} to{" "}
           {Math.min(page * pageSizeState, total)} of {total} entries
@@ -190,7 +180,7 @@ export default function DetailPegawaiTable({
             disabled={page === 1}
             className="px-3 py-1 bg-gray-700 rounded disabled:opacity-40"
           >
-            Previous
+            Prev
           </button>
 
           {Array.from({ length: totalPages }).map((_, i) => (
@@ -198,9 +188,7 @@ export default function DetailPegawaiTable({
               key={i}
               onClick={() => setPage(i + 1)}
               className={`px-3 py-1 rounded ${
-                page === i + 1
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-700"
+                page === i + 1 ? "bg-blue-600" : "bg-gray-700"
               }`}
             >
               {i + 1}
@@ -217,13 +205,13 @@ export default function DetailPegawaiTable({
         </div>
       </div>
 
-      {/* 🔴 MODAL */}
+      {/* ===== DELETE MODAL (SATU-SATUNYA) ===== */}
       <ConfirmDeleteModal
         open={!!deleteData}
         description="Apakah Anda yakin ingin menghapus data ini?"
         onClose={() => setDeleteData(null)}
         onConfirm={() => {
-          onDelete?.(deleteData?.id);
+          onDelete?.(deleteData.id);
           setDeleteData(null);
         }}
       />

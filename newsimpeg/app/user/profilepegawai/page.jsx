@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { dummyPegawai } from "./datapegawai";
-import EditProfileModal from "@/components/user/modals/EditProfileModal";
+import EditModal from "@/components/user/modals/EditModal";
 
 export default function ProfilePegawaiPage() {
   const [openEdit, setOpenEdit] = useState(false);
@@ -87,7 +87,7 @@ export default function ProfilePegawaiPage() {
       </Card>
 
       {/* MODAL */}
-      <EditProfileModal
+      <EditModal
         open={openEdit}
         onClose={() => setOpenEdit(false)}
         data={p}

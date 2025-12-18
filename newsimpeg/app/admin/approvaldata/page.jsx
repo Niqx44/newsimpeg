@@ -8,7 +8,6 @@ import ConfirmActionModal from "@/components/admin/approve/ConfirmActionModal";
 export default function ApprovePage() {
   const [tab, setTab] = useState("golongan");
 
-  // ✅ DATA HARUS STATE (BIAR BISA BERUBAH)
   const [tableData, setTableData] = useState({
     golongan: [
       {
@@ -22,7 +21,6 @@ export default function ApprovePage() {
     ],
   });
 
-  // ✅ ACTION YANG DIPILIH (approve / decline / notify)
   const [action, setAction] = useState(null);
 
   const columns = {
@@ -37,7 +35,6 @@ export default function ApprovePage() {
     ],
   };
 
-  // ✅ INI YANG TADI KOSONG → SEKARANG ADA LOGIC
   function handleConfirm() {
     if (!action) return;
 

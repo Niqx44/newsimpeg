@@ -1,24 +1,25 @@
-import Header from "@/components/admin/HeaderAdmin";
-import Sidebar from "@/components/admin/SidebarAdmin";
+import Header from "@/components/layout/Header";
+import Sidebar from "@/components/layout/Sidebar";
+import RouteGuard from "@/components/guards/RouteGuard";
 
 export default function AdminLayout({ children }) {
   return (
-    <div className="flex h-screen overflow-hidden">
-      
-      {/* SIDEBAR ADMIN */}
-      <Sidebar />
+    <RouteGuard allow={["admin"]}>
+      <div className="flex h-screen overflow-hidden">
 
-      {/* CONTENT */}
-      <div className="flex flex-col flex-1 overflow-auto">
-        <div className="max-w-7xl mx-auto w-full">
-          <Header />
+        <Sidebar />
+
+        <div className="flex flex-col flex-1 overflow-auto">
+          <div className="max-w-7xl mx-auto w-full">
+            <Header avatar="/admin.jpg" />
+          </div>
+
+          <main className="flex-1 px-6 py-4">
+            {children}
+          </main>
         </div>
 
-        <main className="flex-1 px-6 py-4">
-          {children}
-        </main>
       </div>
-
-    </div>
+    </RouteGuard>
   );
 }

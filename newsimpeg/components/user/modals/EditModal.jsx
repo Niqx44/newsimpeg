@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export default function EditProfileModal({ open, onClose, data, onSave }) {
-  if (!open) return null;
-
+export default function EditModal({ open, onClose, data, onSave }) {
   const [form, setForm] = useState({
     nama: "",
     username_sia: "",
@@ -15,44 +13,44 @@ export default function EditProfileModal({ open, onClose, data, onSave }) {
     alamat: "",
   });
 
-  // ✅ ISI FORM SAAT MODAL DIBUKA
   useEffect(() => {
+    if (!open) return;
+
     setForm({
-      nama: data.nama || "",
-      username_sia: data.username_sia || "",
-      email: data.email || "",
-      no_hp: data.no_hp || "",
-      tempat_lahir: data.tempat_lahir || "",
-      tanggal_lahir: data.tanggal_lahir || "",
-      alamat: data.alamat || "",
+      nama: data?.nama || "",
+      username_sia: data?.username_sia || "",
+      email: data?.email || "",
+      no_hp: data?.no_hp || "",
+      tempat_lahir: data?.tempat_lahir || "",
+      tanggal_lahir: data?.tanggal_lahir || "",
+      alamat: data?.alamat || "",
     });
   }, [data, open]);
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setForm(prev => ({ ...prev, [name]: value }));
+    setForm((prev) => ({ ...prev, [name]: value }));
   }
 
   function handleSubmit() {
-    onSave(form);          // ✅ UPDATE KE PAGE PROFIL
-    alert("Profil berhasil disimpan");
+    onSave(form);
     onClose();
   }
+
+  // ✅ GUARD DI JSX, BUKAN SEBELUM HOOK
+  if (!open) return null;
 
   return (
     <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center">
       <div className="bg-white rounded-xl w-full max-w-3xl shadow-lg">
 
-        {/* HEADER */}
         <div className="px-6 py-4 border-b">
           <h3 className="font-semibold text-gray-900">
             Edit Profile Pegawai
           </h3>
         </div>
 
-        {/* FORM */}
         <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-
           <Input label="Nama" name="nama" value={form.nama} onChange={handleChange} />
           <Input label="Username SIA" name="username_sia" value={form.username_sia} onChange={handleChange} />
           <Input label="Email" name="email" value={form.email} onChange={handleChange} />
@@ -75,7 +73,6 @@ export default function EditProfileModal({ open, onClose, data, onSave }) {
           />
         </div>
 
-        {/* FOOTER */}
         <div className="px-6 py-4 border-t flex justify-end gap-3">
           <button
             onClick={onClose}
@@ -97,16 +94,13 @@ export default function EditProfileModal({ open, onClose, data, onSave }) {
   );
 }
 
-/* ================= FIELD ================= */
-
 function Input({ label, ...props }) {
   return (
     <div className="flex flex-col gap-1">
       <label className="text-gray-600">{label}</label>
       <input
         {...props}
-        className="w-full bg-white border border-gray-300 rounded px-3 py-2
-                   text-gray-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+        className="w-full px-3 py-2 border border-gray-50 rounded text-gray-900 focul:outline-none focus:ring-1"
       />
     </div>
   );
@@ -119,8 +113,7 @@ function Textarea({ label, ...props }) {
       <textarea
         {...props}
         rows={4}
-        className="w-full bg-white border border-gray-300 rounded px-3 py-2
-                   text-gray-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+        className="w-full border rounded border-gray-300 px-3 py-2 focus:ring-1 text-gray-900 focus:outline-none"
       />
     </div>
   );

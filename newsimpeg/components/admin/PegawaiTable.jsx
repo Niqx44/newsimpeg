@@ -12,7 +12,7 @@ export default function PegawaiTable({
   onResetPassword,
 }) {
   return (
-    <div className="bg-[#2b2b2b] p-4 rounded-xl shadow-md mt-4">
+    <div className="bg-[#2b2b2b] p-4 rounded-xl mt-4">
       <table className="w-full text-white text-sm">
         <thead className="border-b border-gray-500">
           <tr>

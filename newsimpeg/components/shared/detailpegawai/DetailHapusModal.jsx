@@ -22,12 +22,15 @@ export default function ConfirmDeleteModal({
 
         <div className="flex justify-end gap-2">
           <button
+            type="button"
             onClick={onClose}
             className="px-4 py-2 bg-gray-600 hover:bg-gray-500 rounded text-white"
           >
             Batal
           </button>
+
           <button
+            type="button"
             onClick={onConfirm}
             className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded text-white"
           >

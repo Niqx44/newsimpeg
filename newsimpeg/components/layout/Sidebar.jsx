@@ -1,33 +1,53 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { House, Folder, Database, LayoutDashboard, Monitor, Book, Printer, Users, Menu } from "lucide-react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
-import React from "react";
-import Image from "next/image";
-
-const ICONS = {
-  House,
+import { useState } from "react";
+import {
   Folder,
   Database,
   LayoutDashboard,
   Monitor,
   Book,
-  Printer,
   Users,
+  Menu,
+  ClipboardCheck,
+  ClipboardList,
+  FileUser,
+  NotebookText,
+  Scale,
+  Megaphone,
+  HardDrive,
+} from "lucide-react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+import { useAuth } from "@/context/AuthContext";
+import { SIDEBAR_BY_ROLE } from "@/lib/sidebarConfig";
+
+const ICONS = {
+  Folder,
+  Database,
+  LayoutDashboard,
+  Monitor,
+  Book,
+  Users,
+  ClipboardCheck,
+  ClipboardList,
+  FileUser,
+  NotebookText,
+  Scale,
+  Megaphone,
+  HardDrive,
 };
 
-const Sidebar = () => {
+export default function Sidebar() {
+  const { role } = useAuth();              // 🔑 ambil role
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [sidebarItems, setSidebarItems] = useState([]);
   const pathname = usePathname();
 
-  useEffect(() => {
-    fetch("/data/admin-sidebar.json")
-      .then((res) => res.json())
-      .then((data) => setSidebarItems(data.sidebarItems));
-  }, []);
+  // ⛔ role belum siap
+  if (!role) return null;
+
+  const sidebarItems = SIDEBAR_BY_ROLE[role] || [];
 
   return (
     <div
@@ -35,7 +55,7 @@ const Sidebar = () => {
         isSidebarOpen ? "w-64" : "w-20"
       }`}
     >
-      <div className="h-full bg-[#1e1e1e] backdrop-blur-md p-4 flex flex-col border-r border-[#2f2f2f]">
+      <div className="h-full bg-[#1e1e1e] backdrop-blur-md p-4 flex flex-col border-r border-[#2f2f2f] overflow-hidden">
         <div className="flex items-center">
           <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -44,7 +64,6 @@ const Sidebar = () => {
             <Menu size={24} />
           </button>
 
-          {/* Logo dan teks SIMPEG UNM */}
           {isSidebarOpen && (
             <div className="flex items-center space-x-3 ml-3 transition-opacity duration-300">
               <Image
@@ -61,11 +80,11 @@ const Sidebar = () => {
           )}
         </div>
 
-        {/* Menu Navigasi */}
-        <nav className="mt-8 grow">
+        <nav className="mt-8 grow overflow-y-auto pr-1 sidebar-scroll">
           {sidebarItems.map((item) => {
             const IconComponent = ICONS[item.icon];
             const isActive = pathname === item.href;
+
             return (
               <Link key={item.name} href={item.href}>
                 <div
@@ -75,7 +94,9 @@ const Sidebar = () => {
                 >
                   <IconComponent size={20} style={{ minWidth: "20px" }} />
                   {isSidebarOpen && (
-                    <span className="ml-4 whitespace-nowrap">{item.name}</span>
+                    <span className="ml-4 whitespace-nowrap">
+                      {item.name}
+                    </span>
                   )}
                 </div>
               </Link>
@@ -85,6 +106,4 @@ const Sidebar = () => {
       </div>
     </div>
   );
-};
-
-export default Sidebar;
+}

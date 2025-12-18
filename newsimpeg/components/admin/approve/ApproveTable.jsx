@@ -12,7 +12,6 @@ export default function ApproveTable({
   const [pageSize, setPageSize] = useState(5);
   const [search, setSearch] = useState("");
 
-  /* ================= FILTER ================= */
   const filteredData = useMemo(() => {
     if (!search) return data;
     return data.filter((row) =>
@@ -31,14 +30,11 @@ export default function ApproveTable({
     return filteredData.slice(start, start + pageSize);
   }, [filteredData, page, pageSize]);
 
-  /* ================= CELL RENDER ================= */
   function renderCell(col, row, idx) {
-    // NO
     if (col.key === "no") {
       return (page - 1) * pageSize + idx + 1;
     }
 
-    // FILE
     if (col.key === "file") {
       return row.file ? (
         <button
@@ -52,7 +48,6 @@ export default function ApproveTable({
       );
     }
 
-    // ACTION
     if (col.key === "action") {
       return (
         <div className="flex justify-center gap-2">
@@ -86,7 +81,6 @@ export default function ApproveTable({
   return (
     <div className="bg-[#2f2f2f] rounded-xl p-6 w-full">
 
-      {/* ================= HEADER ================= */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2 text-sm text-gray-300">
           <span>Show</span>

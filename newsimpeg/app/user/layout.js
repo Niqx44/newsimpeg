@@ -1,26 +1,25 @@
-import HeaderUser from "@/components/user/HeaderUser";
-import SidebarUser from "@/components/user/SidebarUser";
+import Header from "@/components/layout/Header";
+import Sidebar from "@/components/layout/Sidebar";
+import RouteGuard from "@/components/guards/RouteGuard";
 
 export default function UserLayout({ children }) {
   return (
-    <div className="flex h-screen overflow-hidden">
-      
-      {/* SIDEBAR USER */}
-      <SidebarUser />
+    <RouteGuard allow={["user"]}>
+      <div className="flex h-screen overflow-hidden">
 
-      {/* CONTENT */}
-      <div className="flex flex-col flex-1 overflow-auto">
-        
-        {/* HEADER */}
-        <div className="max-w-7xl mx-auto w-full">
-          <HeaderUser />
+        <Sidebar />
+
+        <div className="flex flex-col flex-1 overflow-auto">
+          <div className="max-w-7xl mx-auto w-full">
+            <Header avatar="/user.jpg" />
+          </div>
+
+          <main className="flex-1 px-6 py-4">
+            {children}
+          </main>
         </div>
 
-        {/* PAGE CONTENT */}
-        <main className="flex-1 px-6 py-4">
-          {children}
-        </main>
       </div>
-    </div>
+    </RouteGuard>
   );
 }
