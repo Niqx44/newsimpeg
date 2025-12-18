@@ -128,7 +128,7 @@ export default function DetailPegawaiTable({
 
       {/* ===== TABLE ===== */}
       <div className="overflow-x-auto rounded-lg">
-        <table className="w-full text-sm text-gray-200">
+        <table className="w-full text-sm text-gray-200 table-fixed">
           <thead className="bg-[#262626]">
             <tr>
               {columns.map((c) => (
@@ -146,7 +146,7 @@ export default function DetailPegawaiTable({
                 className="border-b border-gray-700 hover:bg-[#3a3a3a]"
               >
                 {columns.map((col) => (
-                  <td key={col.key} className="py-3 px-4 text-center">
+                  <td key={col.key} className="py-3 px-4 text-center whitespace-normal wrap-break-words">
                     {renderCell(col, row, idx)}
                   </td>
                 ))}
@@ -205,7 +205,6 @@ export default function DetailPegawaiTable({
         </div>
       </div>
 
-      {/* ===== DELETE MODAL (SATU-SATUNYA) ===== */}
       <ConfirmDeleteModal
         open={!!deleteData}
         description="Apakah Anda yakin ingin menghapus data ini?"

@@ -34,7 +34,7 @@ export default function EditProfileModal({ open, onClose, onSave, data }) {
         </h3>
 
         {/* FORM */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[60vh] overflow-auto pr-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[60vh] overflow-y-auto pr-1 sidebar-scroll">
           <Field label="NIP" name="nip" value={form.nip || ""} onChange={handleChange} />
           <Field label="Nama" name="nama" value={form.nama || ""} onChange={handleChange} />
           <Field label="Email" name="email" value={form.email || ""} onChange={handleChange} />

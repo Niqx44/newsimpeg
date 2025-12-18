@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import OrganisasiTable from "@/components/shared/organisasi/OrganisasiTable";
 import OrganisasiFormModal from "@/components/shared/organisasi/OrganisasiFormModal";
-import ConfirmDeleteModal from "@/components/shared/organisasi/ConfirmDeleteModal";
+import ConfirmDeleteModal from "@/components/shared/modal/ConfirmDeleteModal";
 
 export default function AdminOrganisasiPage() {
   const [data, setData] = useState([]);

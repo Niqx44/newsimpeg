@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "judul": "Peraturan Akademik",
+    "peraturan": "SK Rektor No. 1 Tahun 2023",
+    "file": "/SS1.pdf"
+  },
+  {
+    "id": 2,
+    "judul": "Peraturan Kemahasiswaan",
+    "peraturan": "SK Rektor No. 2 Tahun 2023",
+    "file": "/files/peraturan-mahasiswa.pdf"
+  }
+]
